@@ -41,13 +41,25 @@ async function getDashboardData(query) {
 getDashboardData('London')
     .then(data => {
         console.log('Dashboard data: ', data);
-        console.log(
-            `${data.city} is in ${data.country}. \n` +
-            `Today there are ${data.temperature} degrees and the ` +
-            `weather is ${data.weather}. \n` +
-            `The main airport is ${data.airport}. \n`
 
-        );
+        // Iniziamo il messaggio con le info che ci sono sempre
+
+        let message = `${data.city} is in ${data.country}. \n`;
+
+        // Aggiungiamo il meteo SOLO se i dati non sono null/undefined
+        if (data.temperature !== null && data.weather !== null) {
+            message += `Today there are ${data.temperature} degrees and the weather is ${data.weather}. \n`;
+        }
+
+        // Aggiungiamo l'aeroporto SOLO se esiste
+        if (data.airport) {
+            message += `The main airport is ${data.airport}. `;
+        }
+
+        // Stampiamo il messaggio
+        console.log(message)
+
+
     })
     .catch(error => console.error(error));
 
