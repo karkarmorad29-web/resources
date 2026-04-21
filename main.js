@@ -1,4 +1,4 @@
-import { response } from "express";
+
 
 async function getDashboardData(query) {
     // Utilizziamo l'indirizzo locale come richiesto
@@ -13,19 +13,20 @@ async function getDashboardData(query) {
         ]);
 
         // Estraiamo il primo elementoda ogni risultato (assumendo che le API restituiscono array)
-        const destination = responses[0][0];
-        const weather = responses[1][0];
-        const airport = responses[2][0];
+        const destination = destRes[0];
+        const weather = weatherRes[0];
+        const airport = airportRes[0];
 
         //Se uno dei dati manca, restituiamo un messaggio o null
         if (!destination || !weather || !airport) {
-            return "Nessun dato trovato per questa città";
+            //return "Nessun dato trovato per questa città";
+            throw new Error("Dati Incompleti per la città creata.");
         }
 
         //Restituamo l'oggetto con le nuove proprietà mappate
         return {
             city: destination.name,
-            comutry: destination.country,
+            country: destination.country,
             temperature: weather.temperature,
             weather: weather.weather_description,
             airport: airport.name,
@@ -35,3 +36,19 @@ async function getDashboardData(query) {
         console.error("Errore durante il recupero dei dati:", error);
     }
 }
+
+// Testa la funzione con la query "londra" e stampa il messaggio formattato
+getDashboardData('London')
+    .then(data => {
+        console.log('Dashboard data: ', data);
+        console.log(
+            `${data.city} is in ${data.country}. \n` +
+            `Today there are ${data.temperature} degrees and the ` +
+            `weather is ${data.weather}. \n` +
+            `The main airport is ${data.airport}. \n`
+
+        );
+    })
+    .catch(error => console.error(error));
+
+
