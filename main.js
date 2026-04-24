@@ -58,7 +58,35 @@ const longBooksTitles = longBooks.map(book => book.title);
 // Stampa in console di ogni titolo
 longBooksTitles.forEach(title => {
     console.log(title);
-})
+});
+
+//---- SNACK 2 ----
+// Filtro i disponibili
+const availableBooks = books.filter(b => b.available);
+
+// Mappo per applicare lo sconto del 20%
+const discountedBooks = availableBooks.map(book => {
+
+    // trasformo la stringa '15€' in un numero 15
+    const priceAsNumber = parseFloat(book.price.replace('€', '').replace(',', '.'));
+    const discountedPrice = priceAsNumber * 0.8;
+    return {
+        ...book,
+
+        // Salviamo il nuovo prezzo
+        price: parseFloat(discountedPrice.toFixed(2))
+    };
+
+});
+
+
+
+// Trovo il primo con il prezzo intero
+const fullPrincedBook = discountedBooks[0];
+
+// Stampo per verificare
+console.log("---Risultato Snack 2---");
+console.log(fullPrincedBook);
 
 
 
