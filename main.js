@@ -109,6 +109,20 @@ authors.sort((a, b) => {
 console.log("Tutti maggiorenni?", aerAuthorsAdults);
 console.log("Autori ordinati:", authors);
 
+// --- snack 4 ---
+
+// Creare l'array delle età
+const ages = books.map(book => book.author.age);
+
+// Calcolare la somma  con reduce
+const agesSum = ages.reduce((acc, age) => acc + age, 0);
+
+// Calcolare e stampare la media
+const averageAge = agesSum / ages.length;
+console.log("L'età media degli autori è:", averageAge);
+
+
+
 
 
 
