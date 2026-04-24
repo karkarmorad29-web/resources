@@ -1,3 +1,8 @@
+// Definizione della funzione
+function somma(a, b) {
+    return a + b;
+}
+
 const books = [
     {
         title: "React Billionaire",
@@ -44,9 +49,38 @@ const books = [
         tags: ['html', 'advanced', 'junior', 'mid-senior']
     },
 ];
+// Creazione dell'array longbooks (Filtra i libri > 300 pagine)
+const longBooks = books.filter(book => book.pages > 300);
+
+// Creazione dell'array 'longBooksTitles' (Prende solo i titoli)
+const longBooksTitles = longBooks.map(book => book.title);
+
+// Stampa in console di ogni titolo
+longBooksTitles.forEach(title => {
+    console.log(title);
+})
 
 
-async function getDashboardData(query) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*async function getDashboardData(query) {
     // Utilizziamo l'indirizzo locale come richiesto
     const baseURL = "http://localhost:3333";
 
@@ -110,5 +144,6 @@ getDashboardData('London')
 
     })
     .catch(error => console.error(error));
+    */
 
 
