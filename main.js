@@ -79,14 +79,35 @@ const discountedBooks = availableBooks.map(book => {
 
 });
 
-
-
 // Trovo il primo con il prezzo intero
 const fullPrincedBook = discountedBooks[0];
 
 // Stampo per verificare
 console.log("---Risultato Snack 2---");
 console.log(fullPrincedBook);
+
+//--- snack 3 ---
+
+// Creare un array (authors) che contiene gli autori deei libri
+const authors = books.map(book => book.author);
+
+// Variabile booleana. verifica se tutti gli autori sono maggiorenni
+const aerAuthorsAdults = authors.every(author => author.age >= 18);
+
+// Ordina l'array authors in base all'età senza creare un'altra array
+// Se areAuthorsAdults è true -> ordine crescente, altrimenti decescente
+authors.sort((a, b) => {
+    if (aerAuthorsAdults) {
+        return a.age - b - age; // Crescente{
+
+    } else {
+        return b.age - a.age; // Decrescente
+    }
+});
+
+// Verifichiamo i risultati
+console.log("Tutti maggiorenni?", aerAuthorsAdults);
+console.log("Autori ordinati:", authors);
 
 
 
