@@ -138,7 +138,7 @@ function getBooks(ids) {
 }
 
 // Esempio di chiamata per vedere i risultati dello Snack 5 (Bonus)
-getBooks([1, 2, 3])
+/*getBooks([1, 2, 3])
     .then(results => {
         console.log("---Risultati Snack 5 (Bonus)---");
         console.log(results);
@@ -146,6 +146,35 @@ getBooks([1, 2, 3])
     .catch(error => {
         console.error("Errore nello Snack 5:", error);
     });
+*/
+
+
+// --- Snack 6 (Bonus) ---
+
+// Verificare disponibilità book
+const areThereAvailableBooks = books.some(book => book.available);
+
+// Nuovo array ordinato per prezzo
+const booksSortedByPrice = [...books].sort((a, b) => {
+    // Estraiamo i prezzi come numeri
+    const priceA = parseFloat(a.price.replace('€', '').replace(',', '.'));
+    const priceB = parseFloat(b.price.replace('€', '').replace(',', '.'));
+
+    console.log(`Comparing ${a.title} (${priceA}€) with ${b.title} (${priceB}€)`);
+
+    return priceA - priceB; // Ordine crescente per prezzo
+});
+
+
+
+// Ordina booksByPrice in base alla disponibilità (in place)
+booksSortedByPrice.sort((a, b) => (a.available === b.available) ? 0 : a.available ? -1 : 1);
+
+// Stampa i risultati
+console.log("Ci sono libri disponibili?", areThereAvailableBooks);
+console.log("Libri ordinati per prezzo e disponibilità:", booksSortedByPrice);
+
+
 
 
 
