@@ -1,3 +1,5 @@
+//const { response } = require("express");
+
 // Definizione della funzione
 function somma(a, b) {
     return a + b;
@@ -98,8 +100,7 @@ const aerAuthorsAdults = authors.every(author => author.age >= 18);
 // Se areAuthorsAdults è true -> ordine crescente, altrimenti decescente
 authors.sort((a, b) => {
     if (aerAuthorsAdults) {
-        return a.age - b - age; // Crescente{
-
+        return a.age - b.age; // Crescente
     } else {
         return b.age - a.age; // Decrescente
     }
@@ -121,6 +122,30 @@ const agesSum = ages.reduce((acc, age) => acc + age, 0);
 const averageAge = agesSum / ages.length;
 console.log("L'età media degli autori è:", averageAge);
 
+// ---Snack 5 (Bonus)
+
+function getBooks(ids) {
+    const baseURL = "http://localhost:3333/books";
+    const bookPromises = ids.map(id =>
+        fetch(`${baseURL}/${id}`)
+            .then(res => res.json())
+            .catch(error => {
+                console.error(`Errore nel parsing del libro con ID ${id}:`, error);
+                return null; // Ritorna null se c'è un errore di parsing
+            }));
+
+    return Promise.all(bookPromises);
+}
+
+// Esempio di chiamata per vedere i risultati dello Snack 5 (Bonus)
+getBooks([1, 2, 3])
+    .then(results => {
+        console.log("---Risultati Snack 5 (Bonus)---");
+        console.log(results);
+    })
+    .catch(error => {
+        console.error("Errore nello Snack 5:", error);
+    });
 
 
 
@@ -133,17 +158,8 @@ console.log("L'età media degli autori è:", averageAge);
 
 
 
-
-
-
-
-
-
-
-
-
-
-/*async function getDashboardData(query) {
+/*
+ async function getDashboardData(query) {
     // Utilizziamo l'indirizzo locale come richiesto
     const baseURL = "http://localhost:3333";
 
@@ -180,9 +196,13 @@ console.log("L'età media degli autori è:", averageAge);
     } catch (error) {
         console.error("Errore durante il recupero dei dati:", error);
     }
-}
+  }
+*/
 
-// Testa la funzione con la query "londra" e stampa il messaggio formattato
+
+
+
+/* Testa la funzione con la query "londra" e stampa il messaggio formattato
 getDashboardData('London')
     .then(data => {
         console.log('Dashboard data: ', data);
@@ -207,6 +227,6 @@ getDashboardData('London')
 
     })
     .catch(error => console.error(error));
-    */
-
+    
+*/
 

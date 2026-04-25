@@ -24,7 +24,9 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(resourceRouter)
+app.use(express.static(path.join(process.cwd())));
+
+app.use(resourceRouter);
 app.use(errorHandler);
 
 // Log risorse disponibili dal database all'avvio del server
