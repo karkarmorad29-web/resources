@@ -174,10 +174,24 @@ booksSortedByPrice.sort((a, b) => (a.available === b.available) ? 0 : a.availabl
 console.log("Ci sono libri disponibili?", areThereAvailableBooks);
 console.log("Libri ordinati per prezzo e disponibilità:", booksSortedByPrice);
 
+// --- Snack 7 (Bonus) ---
+const tagCounts = books.reduce((acc, book) => {
 
+    // Per ogni tag del libro, aggiorniamo il conteggio
+    book.tags.forEach(tag => {
+        // Se il tag esiste già nell'accumulatore, incrementiamo il conteggio, altrimenti lo inizializziamo a 1
+        if (acc[tag]) {
+            acc[tag]++;
+        } else {
+            // Inizializziamo il conteggio del tag a 1
+            acc[tag] = 1;
+        }
+    });
 
+    return acc;
+}, {});// Oggetto finale con il conteggio dei tag
 
-
+console.log("Conteggio tag:", tagCounts);
 
 
 
