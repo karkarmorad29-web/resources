@@ -183,7 +183,7 @@ const tagCounts = books.reduce((acc, book) => {
         if (acc[tag]) {
             acc[tag]++;
         } else {
-            // Inizializziamo il conteggio del tag a 1
+            //
             acc[tag] = 1;
         }
     });
